@@ -44,7 +44,7 @@ import { MdKeyboardDoubleArrowDown } from "react-icons/md";
             hover:bg-gray-50 dark:hover:bg-gray-700 ${isDragging ? 'opacity-50' : 'opacity-100'}
             ${isMobileView ? 'touch-manipulation' : ''}`}
         >
-          <div>
+          <div className='h-12'>
             <h3 className="font-medium text-gray-900 dark:text-gray-100">{task.title}</h3>
             {task.dueDate && (
               <p className="text-xs text-gray-500 mt-1">
