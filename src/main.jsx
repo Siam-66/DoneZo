@@ -7,7 +7,7 @@ import {
 
 import './index.css'
 import Main from './Layout/Main.jsx';
-import Home from './Pages/Home.jsx';
+import TaskHome from './Pages/TaskHome.jsx';
 
 const router = createBrowserRouter([
   {
@@ -16,7 +16,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home />,
+        element: <TaskHome />,
       },
     ],
   },
