@@ -94,14 +94,14 @@ const Signup = () => {
                 console.log(user);
                 return updateUserProfile({ displayName: name, photoURL: photoURL });
             })
-            // .then(() => {
-            //     const userData = { name, email, photo: photoURL, role: "tourist" };
-            //     return fetch("https://assignment-12-deshventure-server.vercel.app/allUserData", {
-            //         method: "POST",
-            //         headers: { "Content-Type": "application/json" },
-            //         body: JSON.stringify(userData),
-            //     });
-            // })
+            .then(() => {
+                const userData = { name, email, photo: photoURL};
+                return fetch("http://localhost:5000/allUserData", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(userData),
+                });
+            })
             .then(() => {
                 navigate("/");
             })

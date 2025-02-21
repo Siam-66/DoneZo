@@ -4,6 +4,7 @@ import TaskCounter from '../components/TaskCounter';
 import TaskColumn from '../components/TaskColumn';
 import TaskForm from '../components/TaskForm';
 import { AuthContext } from "../Provider/AuthProvider";
+import donezo1 from "../../public/Donezo.png";
 
   const TaskHome = () => {
     const { user, logOut } = useContext(AuthContext);
@@ -118,7 +119,11 @@ import { AuthContext } from "../Provider/AuthProvider";
       <div className="min-h-screen bg-white dark:bg-gray-950 p-1">
         <div className="container mx-auto">
           <div className="flex justify-between items-center mb-8">
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">DoneZo</h1>
+            <div className='flex justify-center items-center'>
+              <img className="w-12  " src={donezo1} alt="" />
+              <h1 className="text-3xl font-bold text-gray-900 dark:text-white">DoneZo</h1>
+            </div>
+            
 
             <div className="flex items-center  rounded-3xl">
             <button

@@ -1,52 +1,59 @@
-import React, { useContext } from "react";
-import { FcGoogle } from "react-icons/fc";
+import React, { useContext, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import { FcGoogle } from "react-icons/fc";
 
 const GoogleLoginButton = () => {
   const { googleSignIn } = useContext(AuthContext);
-  const location = useLocation();
   const navigate = useNavigate();
+  const location = useLocation();
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  
+  const from = location.state?.from?.pathname || "/";
 
   const handleGoogleSignIn = async () => {
+    setError("");
+    setLoading(true);
+    
     try {
-      const result = await googleSignIn();
+      const userResult = await googleSignIn();
       
+      if (!userResult) {
+        throw new Error("Google sign-in failed");
+      }
+
       const userData = {
-        name: result.displayName,
-        email: result.email,
-        photo: result.photoURL,
+        name: userResult.displayName,
+        email: userResult.email,
+        photo: userResult.photoURL,
         role: "tourist"
       };
 
-      console.log("Prepared user data:", userData);
-
-      // const response = await fetch("https://assignment-12-deshventure-server.vercel.app/allUserData", {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify(userData),
-      // });
-
-      if (!response.ok) {
-        const errorText = await response.text();
-        console.error("Server response:", errorText);
-        throw new Error("Failed to save user data");
-      }
+      const response = await fetch("http://localhost:5000/allUserData", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userData),
+      });
 
       const data = await response.json();
-      console.log("Database save successful:", data);
 
-      const from = location?.state?.from?.pathname || "/";
-      navigate(from, { replace: true });
+      if (response.ok) {
+        console.log("User data saved successfully:", data);
+        navigate(from);
+      } else {
+        throw new Error(data.message || "Failed to save user data");
+      }
 
     } catch (error) {
-      console.error("Sign-in process failed:", error);
-      alert("Sign-in failed. Please try again.");
+      console.error("Google sign-in error:", error);
+      setError(error.message);
+    } finally {
+      setLoading(false);
     }
   };
-
   return (
     <div>
       <p className="text-center">Or</p>
