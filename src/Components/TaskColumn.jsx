@@ -5,7 +5,8 @@ import TaskForm from './TaskForm';
 import TaskCard from './TaskCard';
 import TaskDetailModal from './TaskDetailModal';
 
-const TaskColumn = ({ title, tasks, onDrop, onEdit, onDelete, onMobileMove, onAddTask }) => {
+const TaskColumn = ({ title, tasks, onDrop, onEdit, onDelete, onMobileMove, onAddTask, }) => {
+  const filteredTasks = tasks.filter(task => task.category === title);
     const [showAddTaskModal, setShowAddTaskModal] = useState(false);
     const [selectedTask, setSelectedTask] = useState(null);
     const [showTaskDetail, setShowTaskDetail] = useState(false);
@@ -78,8 +79,8 @@ const TaskColumn = ({ title, tasks, onDrop, onEdit, onDelete, onMobileMove, onAd
   <TaskCard
     key={task.id}
     task={task}
-    onCardClick={() => handleCardClick(task)} // This will open TaskDetailModal
-    onMobileMove={onDrop} // For mobile drag and drop functionality
+    onCardClick={() => handleCardClick(task)} 
+    onMobileMove={onDrop} 
   />
 ))}
             </div>

@@ -9,8 +9,8 @@ const TaskDetailModal = ({ isOpen, onClose, task, onEdit, onDelete }) => {
   };
 
   const handleEdit = () => {
-    onEdit(task);
-    onClose();
+    onEdit(task); 
+    onClose(); 
   };
 
   return (

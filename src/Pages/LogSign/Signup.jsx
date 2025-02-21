@@ -96,14 +96,14 @@ const Signup = () => {
             })
             .then(() => {
                 const userData = { name, email, photo: photoURL};
-                return fetch("http://localhost:5000/allUserData", {
+                return fetch("https://donezo-server.vercel.app/allUserData", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(userData),
                 });
             })
             .then(() => {
-                navigate("/");
+                navigate("/taskHome");
             })
             .catch((err) => {
                 console.error("Error creating user:", err);
@@ -187,7 +187,7 @@ const Signup = () => {
 
                     <div className="form-control mt-6">
                         <button 
-                            className="btn text-xl bg-gradient-to-r from-green-600 via-lime-500 to-emerald-300 text-white font-semibold"
+                            className="btn text-xl bg-sky-500 to-emerald-300 text-white font-semibold"
                             disabled={isUploading}
                         >
                             Sign Up

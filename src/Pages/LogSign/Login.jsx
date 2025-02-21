@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import GoogleLoginButton from "./GoogleLoginButton";
+
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -27,7 +27,7 @@ const Login = () => {
 
         const user = result.user;
         setUser(user);
-        navigate(location?.state?.from || "/");
+        navigate(location?.state?.from || "/taskHome");
       })
       .catch((err) => {
         setError({ ...error, login: err.code });
@@ -94,18 +94,18 @@ const Login = () => {
             </label>
           </div>
           <div className="form-control">
-            <button className="btn text-xl bg-gradient-to-r from-green-600 via-lime-500 to-emerald-300 text-white font-semibold">
+            <button className="btn text-xl bg-sky-500 text-white font-semibold">
               Login
             </button>
           </div>
-          <p>
+          <p className="text-sm">
             Don't have an account? Why not
-            <Link to="/signup" className="link text-lime-600 pl-2">
+            <Link to="/signup" className="link text-sky-600 pl-2">
               Sign up
             </Link>
           </p>
         </form>
-        <GoogleLoginButton />
+       
       </div>
     </div>
   );

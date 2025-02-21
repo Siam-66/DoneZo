@@ -13,6 +13,8 @@ import Login from './Pages/LogSign/Login.jsx'
 import Signup from './Pages/LogSign/Signup.jsx'
 import ForgetPassword from './Pages/LogSign/ForgetPassword.jsx'
 import PrivateRoute from "./Routes/PrivateRoute.jsx";
+import WelcomePage from "./Pages/WelcomePage.jsx"
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -20,9 +22,9 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element:<PrivateRoute>
-          <TaskHome />
-        </PrivateRoute> ,
+        element:
+          <WelcomePage />
+         ,
       },
       {
         path:"login",
@@ -36,6 +38,12 @@ const router = createBrowserRouter([
         path:"forgetPassword",
         element:<ForgetPassword></ForgetPassword>,
     },
+    {
+      path:"taskHome",
+      element:<PrivateRoute>
+        <TaskHome></TaskHome>
+      </PrivateRoute>,
+  },
     ],
   },
 ]);
